@@ -8,6 +8,8 @@ app.use(bodyPs.json());
 
 const mhsRouter = require('./routes/mahasiswa');
 app.use('/api/mhs', mhsRouter);
+const jrsRouter = require('./routes/jurusan');
+app.use('/api/jrs', jrsRouter);
 
 app.listen(port, () => {
     console.log(`running app http:://localhost:${port}`)
