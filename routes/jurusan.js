@@ -33,7 +33,7 @@ router.post('/store', (req, res) => {
     });
 });
 
-// GET jurusan by ID
+/// GET jurusan by ID
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
@@ -44,13 +44,15 @@ router.get('/:id', (req, res) => {
         }
 
         if (rows.length === 0) {
+            console.error('Jurusan not found with ID:', id);
             return res.status(404).json({ status: false, message: 'Jurusan not found' });
         }
 
         console.log('Jurusan data retrieved successfully');
-        return res.status(200).json({ status: true, message: 'Data Jurusan', data: rows[0] });
+        return res.status(200).json({ status: true, message: 'Jurusan Data', data: rows[0] });
     });
 });
+
 
 // UPDATE jurusan by ID
 router.put('/update/:id', (req, res) => {
