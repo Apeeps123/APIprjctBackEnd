@@ -151,9 +151,13 @@ router.patch('/update/:id', upload.fields([{ name: 'gambar', maxCount: 1 }, { na
         let Data = {
             nama: req.body.nama,
             nrp: req.body.nrp,
-            id_jurusan: req.body.id_jurusan,
-            gambar: gambar,
-            swa_foto: swa_foto
+            id_jurusan: req.body.id_jurusan
+        }
+        if (gambar) {
+            Data.gambar = gambar;
+        }
+        if (swa_foto){
+            Data.swa_foto = swa_foto;
         }
         connection.query(`update mahasiswa set ? where id_m = ${id}`, Data, function (err, rows) {
             if(err){
