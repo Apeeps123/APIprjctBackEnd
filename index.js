@@ -1,20 +1,22 @@
-const express = require('express')
-const app = express()
-const port = 3000 
-const cors = require('cors')
-app.use(cors())
-const path = require('path')
-app.use('/static', express.static(path.join(__dirname, 'public/images')))
+const express = require("express");
+const mhsRouter = require("./routes/mahasiswa");
+const jrsRouter = require("./routes/jurusan");
+const auth = require("./routes/auth/auth");
+const bodyPrs = require("body-parser");
+const app = express();
+const port = 3000;
 
-const bodyPs = require('body-parser'); 
-app.use(bodyPs.urlencoded({ extended: false}));
-app.use(bodyPs.json());
+const cors = require("cors");
+app.use(cors());
+const path = require("path");
+app.use("/static", express.static(path.join(__dirname, "public/images")));
 
-const mhsRouter = require('./routes/mahasiswa');
-app.use('/api/mhs', mhsRouter);
-const jrsRouter = require('./routes/jurusan');
-app.use('/api/jrs', jrsRouter);
+app.use(bodyPrs.urlencoded({ extended: false }));
+app.use(bodyPrs.json());
+app.use("/api/mhs", mhsRouter);
+app.use("/api/jrs", jrsRouter);
+app.use("/api/auth", auth);
 
 app.listen(port, () => {
-    console.log(`running app http:://localhost:${port}`)
-})
+  console.log(`Aplikasi berjalan di http://localhost:${port}`);
+});

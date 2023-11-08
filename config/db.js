@@ -3,7 +3,7 @@ let connection = msyql.createConnection({
 host: 'localhost',
 user:'root',
 password: '',
-database:'db_01_express'
+database:'db_express'
 });
 
 connection.connect(function (error) {
